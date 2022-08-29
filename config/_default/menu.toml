@@ -1,0 +1,109 @@
+[[main]]
+  name = "Belajar"
+  identifier = "dropdown"
+  pre = '📖'
+  weight ='1'
+[[main]]
+  id = "more"
+  weight = 6
+  parent = "dropdown"
+  name = "More 🛰️"
+  url = "belajar"
+
+[[main]]
+  name = "Matematika SMA"
+  identifier = "matsma"
+  pre = '🎲'
+  weight ='2'
+[[main]]
+  id = "more2"
+  weight = 5
+  parent = "matsma"
+  name = "More 🚀"
+  url = "mat-sma"
+
+[[main]]
+  name = "Pembatik"
+  identifier = "pembatik"
+  pre = '<img src="/cover/logo-pembatik.png" class="d-inline icon lazyload lazyloaded" width="16" height="16">'
+  weight ='5'
+[[main]]
+  id = "vlog"
+  weight = 2
+  pre = '🎥'
+  parent = "pembatik"
+  name = "Vlog"
+  url = "/pembatik/vlog"
+[[main]]
+  id = "artikel"
+  weight = 1
+  parent = "pembatik"
+  name = "Artikel"
+  pre = "📝"
+  url = "/pembatik"
+[[main]]
+  id = "sosisrumbel"
+  weight = 3
+  parent = "pembatik"
+  pre = '👨🏻‍🏫'
+  name = "Sosialisasi Rumah Belajar"
+  url = "/pembatik/sosis"
+[[main]]
+  id = "catatandrb"
+  weight = 4
+  parent = "pembatik"
+  pre = '👨‍💻'
+  name = "Catatan DRB"
+  url = "/pembatik/drb"
+
+  [[main]]
+  identifier = "video"
+  name = "Lainnya"
+  weight ='6'
+  pre = '🏷️'
+  [[main]]
+  parent = "video"
+  name = "Video"
+  weight ='1'
+  pre = '🎥'
+  url = 'https://www.youtube.com/channel/UCPqHmSdwMI5ah-1jrn00bBw'
+[[main]]
+  parent = "video"
+  name = "Tutorial"
+  weight ='2'
+  pre = '🖌️'
+  url = '/tutorial'
+
+[[footer]]
+  name = "About"
+  identifier = "support"
+  url = "/about"
+  weight = 1
+[[footer]]
+  name = "Contact"
+  url = "/contact"
+  weight = 2
+[[footer]]
+  name = "Archive"
+  url = "/arsip"
+  weight = 3
+[[footer]]
+  name = "Kebijakan Privasi"
+  url = "/privacy-police"
+  weight = 4
+
+[[link]]
+  name = "Rumah Belajar"
+  weight ='1'
+  pre = '<img class="icon" alt="rumah belajar" src="/cover/logo-rumah-belajar.png" data-sizes="auto" loading="lazy" width="30px" height="30px" style="object-fit: cover;"/>'
+  url = 'https://belajar.kemdikbud.go.id/'
+[[link]]
+  name = "Jogja Belajar"
+  weight ='2'
+  pre = '<img class="icon" alt="Jogja belajar" src="https://jogjabelajar.org/jb.ico" data-sizes="auto" loading="lazy" width="30px" height="30px" style="object-fit: cover;"/>'
+  url = 'https://belajar.kemdikbud.go.id/'
+[[link]]
+  name = "SMAN 2 Wates"
+  weight ='3'
+  pre = '<img class="icon" alt="SMAN 2 Wates" src="https://www.smadawates.sch.id/media_library/images/d8e5dfe5085097c32b7fbc96cd3c46ac.png" data-sizes="auto" loading="lazy" width="30px" height="30px" style="object-fit: cover;"/>'
+  url = 'https://belajar.kemdikbud.go.id/'

@@ -1,0 +1,76 @@
+{{ define "head-end" }}
+{{- $titleKey := dict "name" "title" "weight" 0.8 -}}
+{{- $contentKey := dict "name" "content" "weight" 0.5 -}}
+{{- $tagsKey := dict "name" "tags" "weight" 0.3 -}}
+{{- $categoriesKey := dict "name" "categories" "weight" 0.3 -}}
+{{- $seriesKey := dict "name" "series" "weight" 0.3 -}}
+{{- $keys := slice $titleKey $contentKey $tagsKey $categoriesKey $seriesKey -}}
+{{- $options := dict "ignoreLocation" true "includeMatches" true "includeScore" true "keys" $keys -}}
+{{- $optionWhitelist := slice "ignoreLocation" "isCaseSensitive" "minMatchCharLength" "threshold" "distance" "useExtendedSearch" -}}
+{{- with .Site.Params.search.fuse -}}
+  {{- range $key, $value := . -}}
+    {{- range $optionWhitelist -}}
+      {{- if eq $key (lower .) -}}
+        {{- $options = merge $options (dict . $value) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{ end }}
+
+{{ define "content" }}
+<style>.table>:not(caption)>*>*, table>:not(caption)>*>* {
+    padding: 0rem; 
+    background-color: var(--bs-table-bg);
+    border-bottom-width: 0px;
+    box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+}
+thead, tbody, tfoot, tr, td, th {
+    border-color: inherit;
+    border-style: none;
+    border-width: 0;
+}
+table{margin-bottom:0em}.gcse-searchbox:empty{height:40px;background-color:silver;border-radius:8px}.gcse-searchresults:empty{height:100px;background-color:silver;border-radius:8px}.gsc-above-wrapper-area{border:none}.gsc-control-cse{border:none;background-color:transparent;font-size:1rem;padding:0}.gsc-cursor{margin:1em 0;display:flex!important;justify-content:start;align-items:center}.gsc-cursor-page{padding:1rem;margin:0!important;background-color:transparent!important}.gsc-cursor-box,.gsc-webResult.gsc-result,.gsc-results .gsc-imageResult{border:none;background-color:transparent!important}</style>
+<div class="container px-2 lg:px-6 lg:max-w-4xl mx-auto my-4 mb:my-8 lg:my-16">
+  <div class="row mb-4">
+  <div class="cols-span-8 mx-auto">
+  <div class=gcse-searchbox data-enablehistory=true data-enableautocomplete=true data-autocompletemaxcompletions=5 data-autocompletematchtype=any></div>
+  </div>
+  </div>
+  <div class=row>
+  <div class="col-md-12 mx-auto">
+  <div class=gcse-searchresults data-refinementstyle=link>
+  </div>
+  <div id=search-placeholder class="text-center py-5 my-5">
+  </div>
+  </div>
+  </div>
+  </div>
+<script>
+const resultsReadyCallback=function(h,i,b,c,a){
+  const g=b=>{
+    console.dir(b);
+    const a=document.createElement('a');
+    a.href=b.url,a.target='_blank',a.classList.add('gs-title');
+    const c=document.createElement('span');
+    return c.innerHTML='Promo: '+b.title,a.appendChild(c),a
+  },e=a=>`
+  
+  <div class="card surface my-2">
+    <div class="card-body">
+      <h5 class="card-title h5"><a class="restul-highlight" href="${a.url}">${a.title}</a></h5>
+      <div class="text-secondary small restul-highlight">${a.content}</div>
+    </div>
+  </div>
+  `,f=()=>`
+<div class="card surface my-2">
+  <div class="card-body text-center py-5">
+    {{ partial "helpers/image" (dict "filename" "/images/search.png" "alt" "Searching..." "class" "mw-100" "resources" .Resources) }}
+    <div class="lead my-4">Tidak ditemukan, coba dengan kata kunci lain!</div>
+  </div>
+</div>
+`,d=document.createElement('table');if(b){console.dir(b);for(const a of b){const c=d.insertRow(-1),e=c.insertCell(-1);e.appendChild(g(a))}a.appendChild(d),a.appendChild(document.createElement('br'))}if(c.length>1){const b=c.map(a=>e(a));a.innerHTML=b.join(''),a.classList.remove('gsc-webResult')}else a.innerHTML=f();return!0};function renderedCallback(b,c,d,a,e){a?document.querySelector("#search-placeholder").classList.add('d-none'):document.querySelector("#search-placeholder").classList.remove('d-none')}function initCallback(){const a=()=>`
+  {{ partial "helpers/image" (dict "filename" "/images/search.png" "alt" "Searching..." "class" "mw-100" "resources" .Resources) }}
+<div class="lead my-4">Apa yang ingin kamu cari?</div>
+`;return document.querySelector('#search-placeholder').innerHTML=a(),!0}window.__gcse||(window.__gcse={}),window.__gcse.initializationCallback=initCallback,window.__gcse.searchCallbacks={web:{ready:resultsReadyCallback,rendered:renderedCallback}}</script>
+{{ end }}

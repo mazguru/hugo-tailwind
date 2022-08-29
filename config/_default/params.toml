@@ -1,0 +1,148 @@
+# mainSections = ["post", "posts"] # Default to ["posts"].
+
+# titleSeparator = "|" # Title separator. Default to "-".
+
+description = "Mari belajar bersama agar kebahagiaan selalu dalam diri kita. Dengan belajar, seseorang akan menjadi pintar, dengan kepintaran seseorang akan merasa bahagia."
+deskripsisite = "Mari belajar bersama agar kebahagiaan selalu dalam diri kita. Dengan belajar, seseorang akan menjadi pintar, dengan kepintaran seseorang akan merasa bahagia."
+keywords = "sinau, matematika, belajar, blog"
+# images = ["site-feature-image.jpg"]
+
+# pavicon ="images/pavicon.png"
+# logo = "images/logo.png" # Logo image. Default to "images/logo.webp".
+logo = "/images/logo/logo-white.webp" # Logo image. Default to "images/logo.webp".
+logo2 = "/images/logo/logo.png"
+logonavbar = "images/logo/iconfull-white.png"
+logoern = "images/404.png" # Logo image. Default to "images/logo.webp".
+# homepage="images/homepage.svg".
+brand = "SINAUMATEMATIKA"
+brand2 = "Sinau Matematika"
+menusPosition = "left" # Menus position: right(default), left or center.
+
+palette = "sinau" # Default palette. Optional.
+
+color = "light" # light, dark or dynamic. Default to dynamic.
+
+# fullWidth = true # Full width.
+fixedHeader = true # Turn on/off fixed header.
+
+dateFormat = "2 Jan 2006"
+
+# Google Adsense
+# googleAdsense = "ca-pub-8506473245826654"
+#Google Tag
+# googleTags = "GTM-K78DDJW"
+# googleAnalyticsUniversal = "G-CXP550L7VB"
+
+# math = true # Enable math globally.
+# toc = false # Disable TOC globally.
+# breadcrumb = false # Disable breadcrumb
+
+# poweredBy = false # Whether to show powered by.
+
+# readingTime = false # Whether to display the reading time.
+# postDate = false # Whether to display the post date in the post meta section.
+
+# featuredPostCount = 10 # The number of featured posts shown in sidebar. Turn off by setting it to false.
+recentPostCount = 6 # The number of recent posts shown in sidebar. Turn off by setting it to false.
+relatedPostCount = 5 # The number of related posts. Turn off by setting it to false.
+# categoryCount = 10 # The number of categories shown in sidebar. Turn off by setting it to false.
+# tagCount = 10 # The number of tags shown in sidebar. Turn off by setting it to false.
+# seriesCount = 10 # The number of series shown in sidebar. Turn off by setting it to false.
+# taxonomyPostCount = 5 # The number of posts of taxonomy. Turn off by setting it to false.
+
+# Custom CSS and JS
+customCSS = []
+customJS = []
+
+# tocWordCount = 280 # TOC is displayed only if the post's word count exceeds this value.
+
+titleCase = true # Capitalized title.
+
+[codeBlock]
+  # maxLines = 8
+  lineNos = false # true/false represents that show/hide the line numbers by default.
+
+[post]
+  # excerpt = "description"
+  excerptMaxLength = 150
+
+[archive]
+  paginate = 10 # Archive pagination. Default to 100.
+  dateFormat = "2 Jan" # Archive date format. Default to "Jan 2".
+
+[belajar]
+  paginate = 8 # Archive pagination. Default to 100.
+  dateFormat = "2 Jan" # Archive date format. Default to "Jan 2".
+
+[analytics]
+  # baidu = "" # Baidu Analytics
+
+# Site verification
+[siteVerification]
+  google = "yvaDhySejX5eLuyMH0j8EF9bm2muPjFKBTO4a2_yhY0"
+  bing = ""
+  baidu = ""
+  baiduUnion = "" # Baidu Union
+  so = ""
+  sogou = ""
+  shenma = ""
+
+#[creativeCommons]
+  # by = true # Credit must be given to you, the creator.
+  # nc = true # Only noncommercial use of your work is permitted.
+  # nd = true # No derivatives or adaptations of your work are permitted.
+  # sa = true # Adaptations must be shared under the same terms.
+
+[utterances]
+  repo = "mazguru/mazguru.github.io" # Replace with your repository.
+  issueTerm = "pathname" # pathname, url, title, og:title
+  label = "comment"
+  # By default, light and dark mode correspond to github-light and github-dark, respectively.
+  # Optional values: github-light, github-dark, preferred-color-scheme, github-dark-orange, icy-dark, dark-blue, photon-dark.
+  theme = "github-light" 
+
+[search]
+  paginate = 5 # Pagination. Default to 10.
+  # resultContentWordCount = 240 # The maximum word count of result content for displaying.
+  # Fuse.js options. See https://fusejs.io/api/options.html.
+  # [search.fuse]
+    # ignoreLocation = true
+    # location = 0
+    # isCaseSensitive = false
+    # minMatchCharLength = 1
+    # threshold = 0.1
+    # distance = 100
+    # useExtendedSearch = true
+
+[reward]
+  # alipay = "images/reward/alipay.png"
+  # wechat = "images/reward/wechat.png"
+
+[share]
+  #addThis = "ra-6123724b2251f943" # AddThis pubid.
+  #shareThis = "6123834ce631d00012db8186" # Properti ID.
+
+[fontSize] # Comment or remove this settings to disable font size switcher.
+  # extraSmall = ".8rem"
+  # small = ".9rem"
+  # large = "1.1rem"
+  # extraLarge = "1.2rem"
+
+[pwa]
+  [pwa.manifest]
+    # name = "" # Default to site title.
+    short_name = "Sinmat"
+    # display = "fullscreen" # Default to standalone.
+    # description = "" # Default to site description.
+    theme_color = "#0282a9"
+    # background_color = ""
+
+    # Icons
+    # [[pwa.manifest.icons]]
+    #   sizes = "96x96"
+    #   src = "/images/icons/icon-96x96.png"
+    # [[pwa.manifest.icons]]
+    #   sizes = "144x144"
+    #   src = "/images/icons/icon-144x144.png"
+
+viewer = false

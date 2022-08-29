@@ -1,0 +1,30 @@
+
+  <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4" tabindex="0">
+  {{- range .Paginator.Pages -}}
+    <div class="shadow-md p-4 rounded-lg bg-white dark:bg-slate-800 hover:shadow-lg">
+        <a href="{{ .Permalink }}">
+        {{ if .Params.Tumbnail }}
+        <picture class="card-img-top card-image mb-3">
+          <img class='object-cover lazyload rounded center h-48 w-96 dark:brightness-85' src="{{ index .Params.Tumbnail 0 | absURL }}" loading="lazy" data-sizes="auto" height='180px' alt="{{ partial "helpers/title" . }}"/>
+        </picture>
+          {{else}}
+          <picture class="card-img-top card-image mb-3">
+            {{ partial "helpers/image" (dict "filename" "/tumbnail/default.png?height=180px" "alt" .Title "class" "h-48 w-96 dark:brightness-75" "resources" .Resources) }}
+          </picture>
+        {{- end -}}
+        </a>
+          <article>
+            <span class="meta-category">
+            </span>
+            <h6 class="text-gray-900 dark:text-gray-100 hover:text-sky-500 text-xl font-medium mb-2">
+              <a href="{{ .Permalink }}">{{ partial "helpers/title" . }}</a>
+            </h6>	
+            <div class="text-gray-500 text-sm mb-1">
+              {{ partial "post/excerpt" . }} 
+            </div>
+            
+          </article>
+    </div>
+  {{- end -}}
+  </div>
+  {{- partial "pagination" . -}}

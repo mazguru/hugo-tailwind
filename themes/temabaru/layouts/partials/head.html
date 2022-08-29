@@ -1,0 +1,23 @@
+{{ $mainStyle := resources.Get "css/main.css" | postCSS }}
+{{ $iconStyle := resources.Get "css/icon.css" }}
+
+{{ if .Site.IsServer }}
+<!-- Gunakan Tailwind dari CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+  }
+</script> 
+<link rel="stylesheet" href="{{ $iconStyle.Permalink }}" integrity="{{ $iconStyle.Data.Integrity }}" crossorigin="anonymous" defer>
+{{ else }}
+{{ $styles := slice $mainStyle $iconStyle | resources.Concat "css/main.css" | resources.Minify | resources.Fingerprint | resources.PostProcess }}
+<link rel="stylesheet" href="{{ $styles.RelPermalink }}" integrity="{{ $styles.Data.Integrity }}" />
+{{ end }}
+
+{{- if or .Params.math .Site.Params.math -}}
+{{- $katexStyle := resources.Get "katex/index.css" | slice | resources.Concat "css/katex.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $katexStyle.Permalink }}" integrity="{{ $katexStyle.Data.Integrity }}" crossorigin="anonymous">
+
+{{- end -}}

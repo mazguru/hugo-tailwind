@@ -1,0 +1,17 @@
+{{- $script := resources.Get "js/alpine.js" | js.Build "main.js" | minify | fingerprint -}}
+<script src="{{ $script.Permalink }}" integrity="{{ $script.Data.Integrity }}" crossorigin="anonymous" defer></script>
+{{- range .Site.Params.customJS -}}
+<script src="{{ absURL . }}" crossorigin="anonymous"></script>
+{{- end -}}
+
+{{- $lazyScript := resources.Get "lazysizes/index.js" }}
+{{- $configlazyScript := resources.Get "js/lazysizesconfig.js" | resources.ExecuteAsTemplate "lazysizesconfig.js" . -}}
+{{- $scriptLazy := slice $configlazyScript $lazyScript | resources.Concat "js/lazysizes.js" | minify | fingerprint -}}
+<script defer src="{{ $scriptLazy.Permalink }}" integrity="{{ $scriptLazy.Data.Integrity }}" crossorigin="anonymous"></script>
+
+{{- if or .Params.math .Site.Params.math -}}
+{{- $katexScript := resources.Get "katex/index.js" }}
+{{- $configkatexScript := resources.Get "js/katex.config.js" | resources.ExecuteAsTemplate "katex.config.js" . -}}
+{{- $scriptKatex := slice $configkatexScript $katexScript | resources.Concat "js/katex.js" | minify | fingerprint -}}
+<script defer src="{{ $scriptKatex.Permalink }}" integrity="{{ $scriptKatex.Data.Integrity }}" crossorigin="anonymous"></script>
+{{- end -}}

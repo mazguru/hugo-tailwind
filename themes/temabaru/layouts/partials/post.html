@@ -1,0 +1,42 @@
+<div class="col-span-4 md:col-span-8">
+<article class="shadow-md p-4 md:p-6 lg:p-8 xl:p-16 relative bg-white dark:bg-slate-800 rounded-xl prose max-w-none lg:prose-xl prose-p:text-justify prose-slate dark:prose-invert prose-headings:font-sans prose-headings:tracking-tight prose-p:font-serif prose-ol:font-serif prose-ul:font-serif prose-pre:dark:border prose-pre:dark:border-slate-700">
+  {{- partial "post/panel" . -}}
+  <header class="not-prose">
+    
+    <h1 class="text-3xl md:text-4xl lg:text-5xl font-black mb-4 leading-tight tracking-tight">{{ partial "helpers/title" . }}</h1>
+    <div class="mb-4 flex items-center justify-start gap-2 text-base">
+      {{- with .Site.Author -}}
+      <img class="rounded-full inline lazyload h-6 w-6 lazyloaded" alt="{{ .name }}" src="{{ absURL (default "/images/fotoku/profilku.webp" .avatar) }}" data-src="{{ absURL (default "/images/fotoku/profilku.webp" .avatar) }}" loading="lazy" width="32" height="32" style="width: 32px;height: 32px">
+        <a class="text-dark" href="/about">{{ .name }}</a>
+       {{- end -}}
+       {{- if and (default true (default .Site.Params.postDate .Params.postDate)) -}}
+      <time datetime="{{ $.Site.Params.dateFormat }}" title="Ditulis pada {{ .Date.Format (default "Jan 2, 2006" $.Site.Params.dateFormat) }} dan di-update pada {{ .Date.Format (default "Jan 2, 2006" $.Site.Params.dateFormat) }}">• {{ .Date.Format (default "Jan 2, 2006" $.Site.Params.dateFormat) }}</time>
+      {{- end -}}
+    </div>
+    <section class="flex pb-2 gap-1 flex-wrap">
+      {{- range $key, $value := .Site.Taxonomies -}}
+        {{- range ($.GetTerms $key) -}}
+        <a rel="tag" class="p-1 px-1 rounded-md text-xs font-medium bg-sky-100 dark:bg-sky-700 dark:hover:bg-sky-600/25 hover:bg-sky-600/25" href="/topik/css">#{{ .Name }}</a>
+        {{- end -}}
+      {{- end -}}
+    </section>
+    <hr class="border-sky-300 dark:border-sky-700">
+    
+  </header>
+    {{- if .Params.Images -}}
+    {{- if .Params.Images -}}
+    <div class="text-center mb-3">
+      <img class="img-fluid lazyload" alt="{{ .Title }}" src="/img/placeholder.svg" data-src="{{ index .Params.Images 0 | absURL }}" loading="lazy" width="100%" height="100%">
+    </div>
+    {{- end -}}
+    {{ end }}
+    <div class="mb-2">
+      {{- .Content -}}
+    </div>
+    <div class="not-prose"><hr></div>
+    {{- partial "post/nav" . -}}
+</article>
+{{- partial "post/related-posts" . -}}
+{{- partial "post/comments" . -}}
+</div>
+  

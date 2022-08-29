@@ -1,0 +1,66 @@
+{{ define "main" }}
+<main class="container px-0 lg:px-6 lg:max-w-4xl mx-auto my-4 mb:my-8 lg:my-16">
+  <div class="bg-white p-8 rounded-xl shadow-md dark:bg-slate-800">
+    <h1 class="text-xl md:text-2xl lg:text-3xl font-black mb-4 leading-tight tracking-tight">{{ .Title }}</h1>
+    <div class="prose-ul:list-disc prose-p:text-justify prose-ul:font-bold prose-ul:ml-6 justify-center">
+      {{- .Content -}}
+      <form method="POST"
+      x-data="validateForm()"
+      x-init="
+        $watch('name', value => { validate('name') })
+        $watch('email', value => { validate('email') })
+        $watch('subject', value => { validate('subject') })
+        $watch('pesan', value => { validate('pesan') })
+      "
+      class="flex rounded-md border-sky-800 flex-col p-4 space-y-4"
+      name="contact" {{ with $.Site.Params.contact.endpoint }}{{ printf "action=%q" . | safeHTMLAttr }}{{ else }}netlify-honeypot="bot-field" data-netlify-recaptcha="true" action="thank-you" netlify="true"{{ end }} novalidate
+      >
+        <p class="hidden d-none">
+          <label>Don’t fill this out if you're human:
+          <input name="bot-field">
+          </label>
+        </p>
+        <div class="flex flex-col space-y-2">
+          <label for="contactName" class="block tracking-wide mb-2"><b>{{ "contact_name" | i18n }}</b></label>
+          <input name='name' id="contactName" x-model="name" class="px-2 py-2 rounded-md shadow-inner bg-gray-100 focus:border focus:outline-2 focus:border-blue-400" placeholder="masukkan nama kamu">
+              <span class="text-sm italic text-red-500">
+                <div x-text="validation.name.message"></div>
+              </span>
+        </div>
+        <div class="flex flex-col space-y-2">
+          <label for="contactEmail" class="form-label"><b>{{ "contact_email" | i18n }}</b></label>
+          <input x-model="email" name="email" class="px-2 py-2 rounded-md shadow-inner bg-gray-100 focus:border focus:outline-2 focus:border-blue-400" id="contactEmail" aria-describedby="emailHelp" placeholder="masukkan email" required>
+          <span class="text-sm italic text-red-500">
+            <div x-text="validation.email.message"></div>
+          </span>
+          <div id="emailHelp" class="text-sm italic">{{ "contact_email_help" | i18n }}</div>
+        </div>
+      
+          <div class="flex flex-col space-y-2">
+            <label for="contactSubject" class="form-label"><b>{{ "contact_subject" | i18n }}</b></label>
+            <input x-model="subject" class="px-2 py-2 rounded-md shadow-inner bg-gray-100 focus:border focus:outline-2 focus:border-blue-400" name="subject" id="contactSubject" placeholder="masukkan judul" required>
+            <span class="text-sm italic text-red-500">
+              <div x-text="validation.subject.message"></div>
+            </span>
+          </div>
+          <div class="flex flex-col space-y-2">
+            <label for="contactMessage" class="form-label"><b>{{ "contact_message" | i18n }}</b></label>
+            <textarea x-model="pesan" class="px-2 py-2 rounded-md shadow-inner bg-gray-100 focus:border focus:outline-2 focus:border-blue-400" name="message" placeholder="tuliskan pesan anda..." id="contactMessage"></textarea>
+            <span class="text-sm italic text-red-500">
+              <div x-text="validation.pesan.message"></div>
+            </span>
+          </div>
+          {{- if $.Site.Params.contact.file -}}
+          {{- $fileField := default "file" $.Site.Params.contact.fileField -}}
+          <div class="flex flex-col space-y-2">
+            <label for="file" class="form-label"><b>{{ "contact_file" | i18n }}</b></label>
+            <input class="px-2 py-2 rounded-md shadow-inner" type="file" id="{{ $fileField }}" name="{{ $fileField }}">
+          </div>
+          {{- end -}}
+          <button type="submit" class="shadow-lg outline-2 border p-2 text-white font-bold border-sky-800 uppercase bg-sky-600 hover:text-gray-800 hover:bg-sky-300">{{ "button_submit" | i18n }}</button>
+        </form>
+      </div>
+  </div>
+</main>
+{{ end }}
+  

@@ -1,0 +1,145 @@
+
+{{ define "header" }}
+<header class="text-gray-100 bg-gray-800">
+  <div class="container mx-auto px-4 lg:max-w-7xl py-24 text-center md:text-left">
+    <div class="hidden lg:block relative py-6 md:py-0">
+      <img class="origin-bottom-right right-0 -bottom-96 w-70 static md:absolute w-100 md:w-86 lg:w-2/5" src="/images/fotoku/fotoku.png" alt="Petani Kode">
+    </div>
+    <div class="w-100 md:w-1/2">
+      <h1 class="text-6xl font-bold mb-5 tracking-tighter">Sinau Matematika</h1>
+      <p class="text-sm font-light max-w-1/2 md:text-xl lg:text-2xl">Mari belajar bersama agar kebahagiaan selalu dalam diri kita. Dengan belajar, seseorang akan menjadi pintar, dengan kepintaran seseorang akan merasa bahagia.</p>
+      <div class="mt-4 flex flex-row gap-3 justify-center md:justify-start">
+        <a href="/belajar/" class="px-3 py-2 bg-sky-600 hover:bg-sky-700 focus:ring-2 focus:ring-teal-400 rounded-lg active:bg-sky-500">Mulai Belajar</a>
+        <a href="#newsletter" class="px-3 py-2 bg-sky-400/10 border border-teal-400/50 hover:bg-sky-700 focus:ring-2 focus:ring-teal-400 text-teal-100 rounded-lg active:bg-sky-500">Join Newsletter</a>
+      </div>
+    </div>
+  </div>
+</header>
+{{ end }}
+{{ define "index1" }}
+<div class="container mx-auto px-4 lg:max-w-7xl mt-16">
+  <div class='text-center'>
+    <h3 class='fw-light'>🔥 Artikel Terbaru di {{with .Site.Params.brand2}}{{ . }}{{end}}</h3>
+    <p class='lead text-muted'>Apa yang ingin kamu pelajari?</p>
+  </div>
+  {{ partial "list-img" . }}
+</div>
+{{ end }}
+
+{{ define "title" }}
+{{- $pageNumber := "" -}}
+{{- if gt .Paginator.PageNumber 1 -}}
+  {{- $pageNumber = printf " %s" (T "pagination_title" .Paginator) -}}
+{{- end -}}
+{{- printf "%s%s" .Site.Title $pageNumber -}}
+{{ end }}
+
+{{ define "konten2" }}
+<section id="newsletter" class="container p-4 lg:max-w-7xl mx-auto my-8 md:my-16">
+  <div class="p-4 md:p-8 lg:p-16 flex justify-between items-center rounded-xl bg-slate-200 text-slate-700 dark:text-slate-100 dark:bg-slate-800">
+       <div>
+            <h2 class="text-2xl font-bold">📰 Newsletter</h2>
+            <p class="text-lg font-medium text-slate-500 dark:text-slate-300">Dapatkan info postingan terbaru dari Sinau Matematika dengan berlangganan newsletter via email.</p>
+            <form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open('https://feedburner.google.com/fb/a/mailverify?uri=sinau-matematika', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true" class="mt-6" id="opt-in-newsletter-form" name="opt-in-newsletter-form">
+                 <div class="mb-4">
+                      <label for="name" class="block font-sm mb-1 mt-2">Nama</label>
+                      <input
+                           type="text"
+                           class="px-3 py-2 rounded-md w-full border border-slate-300 placeholder-slate-400 caret-teal-600 text-teal-600 font-medium"
+                           name="name"
+                           id="member_first_name"
+                           placeholder="Nama panggilan"
+                           required=""
+                           autocomplete="name"
+                      />
+                 </div>
+                 <div class="mb-4">
+                      <label for="email" class="block font-sm mb-1 mt-2">Email</label>
+                      <input
+                           type="email"
+                           class="px-3 py-2 rounded-md w-full border border-slate-300 placeholder-slate-400 caret-teal-600 text-teal-600 font-medium"
+                           name="email"
+                           placeholder="Alamat email"
+                           required=""
+                           autocomplete="email"
+                      />
+                 </div>
+                 <div id="emailHelp" class="form-text">Kami tidak akan pernah membagikan email Anda kepada orang lain.</div>
+                 <div class="mb-4">
+                      <button type="submit" class="px-3 py-2 my-4 text-white w-full bg-teal-600 hover:bg-teal-700 focus:ring-2 focus:ring-teal-400 rounded-lg active:bg-teal-500" value="Subscribe" >Subscibe</button>
+                 </div>
+                 <input type="hidden" value="sinau-matematika" name="uri"/>
+                 <input type="hidden" name="loc" value="en_US"/>
+            </form>
+            <p>Delivered by <a class='text-lg font-medium' href="https://feedburner.google.com" target="_blank">FeedBurner</a></p>
+            <p>Atau ikuti kami di sosial media</p>
+       </div>
+       <div class="w-96 hidden md:block"><img src="/images/newsletter.png" class="h-96" alt="" /></div>
+  </div>
+</section>
+{{ end }}
+{{ define "konten3" }}
+<div class='container mx-auto pb-6 px-4 lg:max-w-7xl mt-16'>
+  <div class='container'>
+    <div class='row text-center'>
+      <div class='col-12'>
+        <h2 class='h2'>Artikel Berdasarkan Kategori</h2>
+        <p class='lead'>Baca artikel sesuai dengan minat kamu</p>
+      </div>
+    </div>
+  </div>
+
+    <div class='grid grid-cols-1 md:grid-cols-3 gap-4'>
+      {{ range .Site.Taxonomies.kategori }}
+      {{ $postCount := len .Pages }}
+      <div class="shadow-md p-4 rounded-lg bg-white dark:bg-slate-800 hover:shadow-lg">
+          <div class="flex items-center border-b border-gray-200 dark:border-gray-700  pb-6">
+              <img src="https://cdn.tuk.dev/assets/components/misc/doge-coin.png" alt="coin avatar" class="w-12 h-12 rounded-full" />
+              <div class="flex items-start justify-between w-full">
+                  <div class="pl-3 w-full">
+                      <p tabindex="0" class="focus:outline-none text-xl font-medium leading-5 text-gray-800 dark:text-white ">{{ .Page.Title }}</p>
+                      <p tabindex="0" class="focus:outline-none text-sm leading-normal pt-2 text-gray-500 dark:text-gray-200 ">{{ $postCount }} Artikel</p>
+                  </div>
+                  <div role="img" aria-label="bookmark">
+                    <svg  class="focus:outline-none dark:text-white text-gray-800" width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M10.5001 4.66667H17.5001C18.1189 4.66667 18.7124 4.9125 19.15 5.35009C19.5876 5.78767 19.8334 6.38117 19.8334 7V23.3333L14.0001 19.8333L8.16675 23.3333V7C8.16675 6.38117 8.41258 5.78767 8.85017 5.35009C9.28775 4.9125 9.88124 4.66667 10.5001 4.66667Z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" />
+                          </svg>
+                  </div>
+              </div>
+          </div>
+          <div class="px-2">
+            {{ range first 3 .Pages }}
+            <a href="{{ .Page.Permalink }}" class="flex items-center border-b border-gray-200 hover:underline hover:text-sky-500 dark:border-gray-700 py-2">
+              <div class="flex w-full">
+                <div class="pl-3 w-full">
+                <p class="focus:outline-none text-xl font-medium leading-5 text-gray-800 dark:text-white ">{{ partial "helpers/title" . }}</p>
+                <p class="focus:outline-none text-sm leading-normal pt-2 text-gray-500 dark:text-gray-200">
+                  {{- if and (default true (default .Site.Params.postDate .Params.postDate)) -}}
+                  <span class="post-date">
+                    {{ .Date.Format (default "Jan 2, 2006" $.Site.Params.dateFormat) }}
+                  </span>
+                  {{- end -}}
+                  {{- if and (default true (default .Site.Params.readingTime .Params.readingTime)) -}}
+                  <span class="post-reading-time">
+                    • {{ i18n "reading_time" . }}
+                  </span>
+                  {{- end -}}
+                </p>
+              </div>
+              </div>
+              <img class='lazyload rounded mr-0' src="{{ index .Params.Cover 0 | absURL }}" loading="lazy" data-sizes="auto" alt="{{ partial "helpers/title" . }}" width="60" height='60' style='object-fit:cover'/>
+            </a>
+            {{ end }}
+            
+            
+              <div class="self-end card-footer">
+                <small><a class="py-2 px-4 text-xs leading-3 text-sky-700 rounded-full bg-sky-100" href="{{ .Page.Permalink }}">Lihat Semua ➜</a></small>
+              </div>
+          </div>
+          <div class="flex self-end"><button value="button" class="bg-blue-400 text-base text-white px-4 py-2 rounded hover:bg-blue-700 mt-8" id="whoobe-e3a70">Buy now</button></div>
+      </div> 
+      {{ end }}
+    </div>
+  </div>
+</div>
+{{ end }}
